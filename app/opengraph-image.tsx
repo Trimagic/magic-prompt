@@ -6,7 +6,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function Image() {
-  const imageUrl = new URL("/og.png", process.env.APP_URL).href;
+  const imageUrl = "https://magic-prompt-3jr.pages.dev/og.png";
 
   return new ImageResponse(
     (
