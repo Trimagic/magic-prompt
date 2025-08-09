@@ -12,8 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_APP_URL || "https://magic-prompt-3jr.pages.dev";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://magicprompt.agency"), // <-- поставь свой домен
+  metadataBase: new URL(siteUrl),
   title: {
     default: "MAGIC PROMPT — Продающий контент за 60 минут",
     template: "%s · MAGIC PROMPT",
@@ -33,23 +36,23 @@ export const metadata: Metadata = {
     "60 минут",
   ],
   alternates: {
-    canonical: "/",
+    canonical: siteUrl,
     languages: {
-      ru: "/",
-      en: "/en",
-      es: "/es",
+      ru: siteUrl,
+      en: `${siteUrl}/en`,
+      es: `${siteUrl}/es`,
     },
   },
   openGraph: {
     type: "website",
-    url: "https://magicprompt.agency/",
+    url: siteUrl,
     siteName: "MAGIC PROMPT",
     title: "19.99$ · 60 минут · результат сегодня",
     description:
       "Передовые технологии и революционные AI-агенты. Получите готовые тексты, визуалы и блоки лендинга за 60 минут.",
     images: [
       {
-        url: "/og.png",
+        url: `${siteUrl}/og.png`,
         width: 1200,
         height: 630,
         alt: "MAGIC PROMPT — 19.99$ за 60 минут",
@@ -62,7 +65,7 @@ export const metadata: Metadata = {
     title: "19.99$ · 60 минут · результат сегодня",
     description:
       "AI-агенты + промпт-инженер MAGIC PROMPT: тексты, визуалы и секции лендинга при вас за 60 минут.",
-    images: ["/og.png"],
+    images: [`${siteUrl}/og.png`],
   },
   robots: {
     index: true,
@@ -91,46 +94,49 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_APP_URL || "https://magic-prompt-3jr.pages.dev";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://magicprompt.agency/#org",
+        "@id": `${siteUrl}/#org`,
         name: "MAGIC PROMPT",
-        url: "https://magicprompt.agency/",
-        logo: "https://magicprompt.agency/logo.png",
+        url: siteUrl,
+        logo: `${siteUrl}/logo.png`,
       },
       {
         "@type": "WebSite",
-        "@id": "https://magicprompt.agency/#website",
-        url: "https://magicprompt.agency/",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
         name: "MAGIC PROMPT",
-        publisher: { "@id": "https://magicprompt.agency/#org" },
+        publisher: { "@id": `${siteUrl}/#org` },
       },
       {
         "@type": "WebPage",
-        "@id": "https://magicprompt.agency/#webpage",
-        url: "https://magicprompt.agency/",
+        "@id": `${siteUrl}/#webpage`,
+        url: siteUrl,
         name: "19.99$ · 60 минут · результат сегодня",
-        isPartOf: { "@id": "https://magicprompt.agency/#website" },
-        about: { "@id": "https://magicprompt.agency/#service" },
+        isPartOf: { "@id": `${siteUrl}/#website` },
+        about: { "@id": `${siteUrl}/#service` },
         inLanguage: "ru",
       },
       {
         "@type": "Service",
-        "@id": "https://magicprompt.agency/#service",
+        "@id": `${siteUrl}/#service`,
         name: "LIVE-сессия MAGIC PROMPT: продающий контент за 60 минут",
-        provider: { "@id": "https://magicprompt.agency/#org" },
+        provider: { "@id": `${siteUrl}/#org` },
         serviceType: "Маркетинг/Креативы с AI-агентами",
         areaServed: "Worldwide",
-        brand: { "@id": "https://magicprompt.agency/#org" },
+        brand: { "@id": `${siteUrl}/#org` },
         offers: {
           "@type": "Offer",
           price: "19.99",
           priceCurrency: "USD",
           availability: "https://schema.org/InStock",
-          url: "https://magicprompt.agency/#book",
+          url: `${siteUrl}/#book`,
           eligibleRegion: "Worldwide",
         },
       },
